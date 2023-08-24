@@ -6,7 +6,7 @@ import type { Movie } from '../types/types'
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <Link href={`https://vidsrc.to/embed/movie/${movie.id}`}>
-      <Card isPressable shadow="md" className="w-[100%] h-[300px] hover:bg-primary ">
+      <Card isPressable  shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary">
         <CardBody className="overflow-visible p-0">
           <Image
             isZoomed
