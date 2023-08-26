@@ -12,10 +12,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <NextUIProvider>
-        <main className="dark text-foreground bg-background">
           <App />
           <ReactQueryDevtools initialIsOpen={false} />
-        </main>
       </NextUIProvider>
     </QueryClientProvider>
   </React.StrictMode>
