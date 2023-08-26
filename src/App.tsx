@@ -21,6 +21,7 @@ export default function App() {
   return (
     <main className={`${mode} text-foreground bg-background`}>
       <Navigation mode={mode} toggleTheme={toggleTheme}/>
+      <br />
       <PopularMovies/>
     </main>
   )

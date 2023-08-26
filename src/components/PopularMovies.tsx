@@ -30,6 +30,7 @@ const PopularMovies = () => {
   const handlepageChange = (page: number): void => {
     setPage(page)
   }
+
   return (
     <>
       {isLoading ? (
