@@ -25,7 +25,7 @@ const Navigation = ({ mode, toggleTheme }: Props) => {
     <Navbar shouldHideOnScroll>
       <NavbarBrand>
         <AcmeLogo />
-        <p className="font-bold text-inherit">ACME</p>
+        <p className="font-bold text-inherit">StreamScape</p>
       </NavbarBrand>
       <NavbarContent
         className="hidden sm:flex gap-4"
