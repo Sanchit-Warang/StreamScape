@@ -3,6 +3,7 @@ import MovieCard from './MovieCard'
 
 //custom hooks
 import useGetData from '../hooks/useGetData'
+import useGetTotalPages from '../hooks/useGetTotalPages'
 
 //library components
 import { CircularProgress } from '@nextui-org/react'
@@ -26,6 +27,15 @@ const PopularMovies = () => {
       import.meta.env.VITE_TMDB_API_KEY
     }`
   )
+
+  const {
+    data: totalPages,
+  } = useGetTotalPages<number>(
+    ['popularMovies','totalPages'],
+    `https://api.themoviedb.org/3/movie/popular?api_key=${
+      import.meta.env.VITE_TMDB_API_KEY
+    }`
+  ) 
 
   const handlepageChange = (page: number): void => {
     setPage(page)
@@ -51,7 +61,7 @@ const PopularMovies = () => {
           ))}
         </div>
       )}
-      {movieData && (
+      {totalPages && (
         <div>
           <center>
             <Pagination
@@ -61,7 +71,7 @@ const PopularMovies = () => {
               boundaries={0}
               siblings={4}
               onChange={(page: number): void => handlepageChange(page)}
-              total={movieData?.total_pages}
+              total={totalPages}
               initialPage={page}
             />
           </center>
