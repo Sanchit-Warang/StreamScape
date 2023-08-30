@@ -22,7 +22,6 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           <p>
             <b>{movie.title}</b>
           </p>
-          {/* <p className="text-default-500">{movie.type}</p> */}
         </CardFooter>
       </Card>
     </Link>
