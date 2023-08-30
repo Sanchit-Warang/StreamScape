@@ -1,11 +1,12 @@
-import { Card, CardBody, Image, CardFooter, Link } from '@nextui-org/react'
+import { Card, CardBody, Image, CardFooter} from '@nextui-org/react'
+import {Link} from 'react-router-dom'
 
 //types
 import type { Movie } from '../types/types'
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
-    <Link href={`movie/${movie.id}`}>
+    <Link to={`movie/${movie.id}`}>
       <Card isPressable  shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary">
         <CardBody className="overflow-visible p-0">
           <Image
