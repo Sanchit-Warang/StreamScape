@@ -4,16 +4,13 @@ type Props = {
 
 const VideoPlayer = ({videoUrl}: Props) => {
   return (
-    <div className="video-container">
       <iframe
-        width="560"
-        height="315"
         src={videoUrl}
         title="Video Player"
         sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
         allowFullScreen
+        className="w-full h-[80vh]"
       ></iframe>
-    </div>
   )
 }
 

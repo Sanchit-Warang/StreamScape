@@ -11,6 +11,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         <CardBody className="overflow-visible p-0">
           <Image
             isZoomed
+            isBlurred
             shadow="sm"
             radius="lg"
             width="100%"
