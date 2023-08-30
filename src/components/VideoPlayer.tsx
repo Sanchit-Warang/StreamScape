@@ -1,8 +1,8 @@
-type Props = {
-  videoUrl: string
-}
+// type Props = {
+//   videoUrl: string
+// }
 
-const VideoPlayer = ({ videoUrl }: Props) => {
+const VideoPlayer = () => {
   return (
     <div className="video-container">
       {/* <iframe
