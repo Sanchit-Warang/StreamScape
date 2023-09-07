@@ -6,8 +6,8 @@ import type { Movie } from '../types/types'
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
-    <Link to={`movie/${movie.id}`}>
-      <Card isPressable  shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary">
+    <Link to={`/movie/${movie.id}`}>
+      <Card shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary">
         <CardBody className="overflow-visible p-0">
           <Image
             isZoomed

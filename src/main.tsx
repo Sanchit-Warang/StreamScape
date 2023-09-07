@@ -15,7 +15,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 //screens
 import HomeScreen from './screens/HomeScreen'
-import MoviePlayerScreen from './screens/MoviePlayerScreen.tsx'
+import MoviePlayerScreen from './screens/MoviePlayerScreen'
+
 
 const queryClient = new QueryClient()
 

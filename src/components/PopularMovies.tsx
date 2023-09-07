@@ -57,7 +57,7 @@ const PopularMovies = () => {
       ) : (
         <div className="grid mx-10 gap-6 md:grid-cols-7 xs:grid-cols-4">
           {movieData?.results.map((movie: Movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
       )}

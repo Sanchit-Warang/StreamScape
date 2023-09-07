@@ -1,5 +1,4 @@
 import PopularMovies from "../components/PopularMovies"
-
 const HomeScreen = () => {
   return (
     <>
