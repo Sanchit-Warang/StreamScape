@@ -17,6 +17,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import HomeScreen from './screens/HomeScreen'
 import MoviePlayerScreen from './screens/MoviePlayerScreen'
 
+import { Analytics } from '@vercel/analytics/react'
 
 const queryClient = new QueryClient()
 
@@ -37,5 +38,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <ReactQueryDevtools initialIsOpen={false} />
       </NextUIProvider>
     </QueryClientProvider>
+    <Analytics/>
   </React.StrictMode>
 )
