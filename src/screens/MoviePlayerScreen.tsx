@@ -3,7 +3,7 @@ import VideoPlayer from '../components/VideoPlayer'
 // import BackDrop from '../components/BackDrop'
 
 //librarycomponents
-import { Image } from '@nextui-org/react'
+import { Image, Spinner } from '@nextui-org/react'
 
 //custom hooks
 import useGetData from '../hooks/useGetData'
@@ -30,7 +30,7 @@ const MoviePlayerScreen = () => {
     <>
       <VideoPlayer videoUrl={`https://vidsrc.to/embed/movie/${id}`} />
 
-      {movie && (
+      {movie ? (
         <>
           {/* <BackDrop image={movie?.backdrop_path} /> */}
           <div className="grid md:grid-cols-4 xs:grid-cols-4 gap-12 mt-[20vh] mx-7">
@@ -38,7 +38,7 @@ const MoviePlayerScreen = () => {
               <Image
                 isBlurred
                 isZoomed
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 className="w-full"
               />
             </div>
@@ -50,10 +50,12 @@ const MoviePlayerScreen = () => {
               <p>{movie.release_date}</p>
               <br />
               <p>{movie.budget}</p>
+              <br />
+              <p>{movie.adult ? 'True': 'False'}</p>
             </div>
           </div>
         </>
-      )}
+      ):(<center><Spinner/></center>)}
     </>
   )
 }

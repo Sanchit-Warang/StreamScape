@@ -1,4 +1,4 @@
-import { Card, CardBody, Image, CardFooter} from '@nextui-org/react'
+import { Card, CardBody, Image, CardFooter, Badge} from '@nextui-org/react'
 import {Link} from 'react-router-dom'
 
 //types
@@ -8,6 +8,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <Link to={`/movie/${movie.id}`}>
       <Card shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary">
+      <Badge content={movie.vote_average} size='lg' placement='bottom-right' color="secondary">
         <CardBody className="overflow-visible p-0">
           <Image
             isZoomed
@@ -19,6 +20,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           />
         </CardBody>
+        </Badge>
         <CardFooter className="justify-center">
           <p>
             <b>{movie.title}</b>

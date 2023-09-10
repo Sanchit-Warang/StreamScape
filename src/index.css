@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 .bg {
-    background-color: black;
+  background-color: black;
 }
+
+/* .backdrop {
+  background: #ffffff
+    url(https://image.tmdb.org/t/p/original/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg) center
+    center/cover no-repeat;
+} */

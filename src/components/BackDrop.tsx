@@ -1,3 +1,6 @@
+// import PlayButton from "./PlayButton"
+import { Button } from '@nextui-org/react'
+
 type Props = {
   image: string
 }
@@ -6,11 +9,26 @@ const BackDrop = ({ image }: Props) => {
   return (
     <>
       <div
-        className={`w-full h-[8vh] bg-cover bg-center bg-no-repeat`}
+        className={`w-full h-[80vh] bg-center bg-cover bg-no-repeat flex items-center`}
         style={{
-            backgroundImage: (`https://image.tmdb.org/t/p/w500/${image}`)
+          backgroundImage: `
+          url(https://image.tmdb.org/t/p/original/${image})`,
+          filter: 'brightness(50%)',
         }}
-      ></div>
+      >
+        {/* <center> */}
+          {' '}
+          <Button
+            style={{
+              filter: 'brightness(200%)',
+            }}
+            className="mx-auto my-auto"
+            color='secondary'
+          >
+            Play
+          </Button>
+        {/* </center> */}
+      </div>
     </>
   )
 }
