@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import {
   Modal,
   ModalContent,
@@ -9,9 +10,13 @@ import {
   ListboxItem,
 } from '@nextui-org/react'
 
-import { Link } from 'react-router-dom'
+import { SearchIcon } from './SearchIcon'
+
+// import { Link } from 'react-router-dom'
 
 import { useState } from 'react'
+
+import SeachListItem from './SeachListItem'
 
 //custom hooks
 import useGetData from '../hooks/useGetData'
@@ -24,6 +29,7 @@ type Props = {
 }
 
 const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
+  const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
 
   const { data: searchMovieData, isLoading } = useGetData<MovieData>(
@@ -33,15 +39,21 @@ const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
     }&query=${searchQuery}`
   )
 
+  const handleClickListItem = (id: number): void => {
+    setSearchQuery('')
+    navigate(`/movie/${id}`)
+  }
+
   return (
     <Modal
       isOpen={isOpen}
+      size="lg"
       backdrop={'blur'}
       onOpenChange={onOpenChange}
       scrollBehavior="inside"
     >
       <ModalContent className={`${mode} text-foreground bg-background`}>
-        {() => (
+        {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 mr-4">
               <Input
@@ -50,6 +62,7 @@ const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 color="secondary"
+                startContent={<SearchIcon />}
               />
             </ModalHeader>
             <ModalBody>
@@ -59,10 +72,13 @@ const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
                 <Listbox>
                   {searchMovieData?.results.map((movie: Movie) => {
                     return (
-                      <ListboxItem key={movie.id} className="h-10">
-                        <Link key={movie.id} to={`/movie/${movie.id}`}>
-                          {movie.title} ({movie.release_date})
-                        </Link>
+                      <ListboxItem
+                        onPress={onClose}
+                        onClick={() => handleClickListItem(movie.id)}
+                        key={movie.id}
+                        className="h-[10vh] overflow-visible"
+                      >
+                        <SeachListItem movie={movie}/>
                       </ListboxItem>
                     )
                   })}

@@ -1,3 +1,5 @@
+// import { MouseEventHandler } from 'react'
+
 import {
   Navbar,
   NavbarBrand,
@@ -54,19 +56,16 @@ const Navigation = ({ mode, toggleTheme }: Props) => {
             onPress={onOpen}
             endContent={<SearchIcon />}
           /> */}
-          <Button onPress={onOpen} variant='flat' color='secondary'><SearchIcon/>Search</Button>
-          <Button
-            isIconOnly
-            variant="light"
-            onClick={(): void => {
-              handleTheme()
-            }}
-          >
+          <Button onPress={onOpen} variant="flat" color="secondary">
+            <SearchIcon />
+            Search
+          </Button>
+          <Button isIconOnly variant="light" onClick={handleTheme}>
             {mode === 'light' ? <MoonIcon /> : <SunIcon />}
           </Button>
         </NavbarContent>
       </Navbar>
-      <SearchModal isOpen={isOpen} onOpenChange={onOpenChange} mode={mode}/>
+      <SearchModal isOpen={isOpen} onOpenChange={onOpenChange} mode={mode} />
     </>
   )
 }

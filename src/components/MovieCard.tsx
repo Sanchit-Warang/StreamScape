@@ -7,8 +7,8 @@ import type { Movie } from '../types/types'
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <Link to={`/movie/${movie.id}`}>
-      <Card shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary">
-      <Badge content={movie.vote_average} size='lg' placement='bottom-right' color="secondary">
+      <Card shadow="md" fullWidth={true} className="h-[300px] hover:bg-primary overflow-visible">
+      <Badge content={movie.vote_average} size='lg' placement='top-right' color="secondary">
         <CardBody className="overflow-visible p-0">
           <Image
             isZoomed
@@ -22,7 +22,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         </CardBody>
         </Badge>
         <CardFooter className="justify-center">
-          <p>
+          <p className='truncate'>
             <b>{movie.title}</b>
           </p>
         </CardFooter>
