@@ -11,3 +11,7 @@
     url(https://image.tmdb.org/t/p/original/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg) center
     center/cover no-repeat;
 } */
+
+.poster{
+  background: #ffffff url(/img/ottawa.jpg) center center/cover no-repeat;
+}

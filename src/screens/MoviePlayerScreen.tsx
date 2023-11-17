@@ -25,7 +25,7 @@ const MoviePlayerScreen = () => {
       import.meta.env.VITE_TMDB_API_KEY
     }`
   )
-
+  
   return (
     <>
       <VideoPlayer videoUrl={`https://vidsrc.to/embed/movie/${id}`} />
@@ -33,7 +33,9 @@ const MoviePlayerScreen = () => {
       {movie ? (
         <>
           {/* <BackDrop image={movie?.backdrop_path} /> */}
-          <div className="grid md:grid-cols-4 xs:grid-cols-4 gap-12 mt-[20vh] mx-7">
+          <div
+            className="grid md:grid-cols-4 xs:grid-cols-4 gap-12 mt-[20vh] mx-7"
+          >
             <div className="col-span-1">
               <Image
                 isBlurred
@@ -51,11 +53,15 @@ const MoviePlayerScreen = () => {
               <br />
               <p>{movie.budget}</p>
               <br />
-              <p>{movie.adult ? 'True': 'False'}</p>
+              <p>{movie.adult ? 'True' : 'False'}</p>
             </div>
           </div>
         </>
-      ):(<center><Spinner/></center>)}
+      ) : (
+        <center>
+          <Spinner />
+        </center>
+      )}
     </>
   )
 }

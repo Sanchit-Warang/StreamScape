@@ -8,6 +8,8 @@ import {
   Spinner,
   Listbox,
   ListboxItem,
+  RadioGroup,
+  Radio,
 } from '@nextui-org/react'
 
 import { SearchIcon } from './SearchIcon'
@@ -20,7 +22,7 @@ import SeachListItem from './SeachListItem'
 
 //custom hooks
 import useGetData from '../hooks/useGetData'
-import { MovieData, Movie } from '../types/types'
+import { MediaData, Movie, TVShow } from '../types/types'
 
 type Props = {
   isOpen: boolean
@@ -31,17 +33,20 @@ type Props = {
 const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
+  const [tyype, setTyype] = useState('movie')
 
-  const { data: searchMovieData, isLoading } = useGetData<MovieData>(
-    ['search results', searchQuery],
-    `https://api.themoviedb.org/3/search/movie?api_key=${
+  const { data: searchMovieData, isLoading } = useGetData<
+    MediaData<Movie | TVShow>
+  >(
+    ['search results', searchQuery, tyype],
+    `https://api.themoviedb.org/3/search/${tyype}?api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }&query=${searchQuery}`
   )
 
   const handleClickListItem = (id: number): void => {
     setSearchQuery('')
-    navigate(`/movie/${id}`)
+    navigate(`/${tyype == 'tv' ? 'tvshow': tyype}/${id}`)
   }
 
   return (
@@ -56,29 +61,40 @@ const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 mr-4">
+              <RadioGroup
+                label="Select Type"
+                orientation="horizontal"
+                defaultValue={tyype}
+                onValueChange={(e) => {
+                  setTyype(e)
+                }}
+              >
+                <Radio value="movie">Movies</Radio>
+                <Radio value="tv">TV shows</Radio>
+              </RadioGroup>
               <Input
-                type="text"
-                label="Search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                color="secondary"
-                startContent={<SearchIcon />}
-              />
+                  type="text"
+                  label="Search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  color={tyype == 'tv' ? 'primary' : 'secondary'}
+                  startContent={<SearchIcon />}
+                />
             </ModalHeader>
             <ModalBody>
               {isLoading ? (
                 <Spinner />
               ) : (
                 <Listbox>
-                  {searchMovieData?.results.map((movie: Movie) => {
+                  {searchMovieData?.results.map((entry: Movie | TVShow) => {
                     return (
                       <ListboxItem
                         onPress={onClose}
-                        onClick={() => handleClickListItem(movie.id)}
-                        key={movie.id}
+                        onClick={() => handleClickListItem(entry.id)}
+                        key={entry.id}
                         className="h-[10vh] overflow-visible"
                       >
-                        <SeachListItem movie={movie}/>
+                        <SeachListItem entry={entry} />
                       </ListboxItem>
                     )
                   })}

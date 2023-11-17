@@ -16,8 +16,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 //screens
 import HomeScreen from './screens/HomeScreen'
 import MoviePlayerScreen from './screens/MoviePlayerScreen'
+import TVShowPlayerScreen from './screens/TVShowPlayerScreen.tsx'
 
 import { Analytics } from '@vercel/analytics/react'
+
 
 const queryClient = new QueryClient()
 
@@ -26,6 +28,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/movie/:id" element={<MoviePlayerScreen />} />
+      <Route path="/tvshow/:id" element={<TVShowPlayerScreen />} />
     </Route>
   )
 )

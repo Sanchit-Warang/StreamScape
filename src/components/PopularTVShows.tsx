@@ -1,5 +1,5 @@
 //custom components
-import MovieCard from './MovieCard'
+import TVShowCard from './TVShowCard'
 
 //custom hooks
 import useGetData from '../hooks/useGetData'
@@ -12,18 +12,18 @@ import { Pagination } from '@nextui-org/react'
 //library
 import { useState } from 'react'
 //types
-import type { Movie, MediaData } from '../types/types'
+import type { TVShow, MediaData } from '../types/types'
 
-const PopularMovies = () => {
+const PopularTVShows = () => {
   const [page, setPage] = useState<number>(1)
 
   const {
-    data: movieData,
+    data: tvshowData,
     isLoading,
     isError,
-  } = useGetData<MediaData<Movie>>(
-    ['popularMovies', page],
-    `https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${
+  } = useGetData<MediaData<TVShow>>(
+    ['popularTVShows', page],
+    `https://api.themoviedb.org/3/tv/popular?page=${page}&api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }`
   )
@@ -31,8 +31,8 @@ const PopularMovies = () => {
   const {
     data: totalPages,
   } = useGetTotalPages<number>(
-    ['popularMovies','totalPages'],
-    `https://api.themoviedb.org/3/movie/popular?api_key=${
+    ['popularTVShows','totalPages'],
+    `https://api.themoviedb.org/3/tv/popular?api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }`
   ) 
@@ -55,9 +55,9 @@ const PopularMovies = () => {
       ) : isError ? (
         'Error fetching data'
       ) : (
-        <div className="grid mx-10 gap-6 md:grid-cols-7 sm:grid-cols-2">
-          {movieData?.results.map((movie: Movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+        <div className="grid mx-10 gap-6 md:grid-cols-7 xs:grid-cols-4">
+          {tvshowData?.results.map((tvshow: TVShow) => (
+            <TVShowCard key={tvshow.id} tvshow={tvshow} />
           ))}
         </div>
       )}
@@ -81,4 +81,4 @@ const PopularMovies = () => {
   )
 }
 
-export default PopularMovies
+export default PopularTVShows
