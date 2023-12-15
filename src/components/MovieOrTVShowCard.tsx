@@ -2,18 +2,20 @@ import { Card, CardBody, Image, CardFooter, Badge } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 
 //types
-import type { Movie } from '../types/types'
+import type { Movie, TVShow } from '../types/types'
 
-export default function MovieCard({ movie }: { movie: Movie }) {
+type Props = { data: Movie | TVShow }
+
+export default function MovieOrTVShowCard({ data }: Props) {
   return (
-    <Link to={`/movie/${movie.id}`}>
+    <Link to={`/${'name' in data ? 'tvshow' : 'movie'}/${data.id}`}>
       <Card
         shadow="md"
         fullWidth={true}
         className="h-[300px] w-[100%] hover:bg-primary overflow-visible"
       >
         <Badge
-          content={movie.vote_average.toFixed(1)}
+          content={data.vote_average.toFixed(1)}
           size="lg"
           placement="top-right"
           color="secondary"
@@ -26,13 +28,15 @@ export default function MovieCard({ movie }: { movie: Movie }) {
               radius="lg"
               width="100%"
               className="w-full object-cover h-[250px]"
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={`${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w500/${
+                data.poster_path
+              }`}
             />
           </CardBody>
         </Badge>
         <CardFooter className="justify-center">
           <p className="truncate">
-            <b>{movie.title}</b>
+            <b>{'name' in data ? data.name : data.title}</b>
           </p>
         </CardFooter>
       </Card>

@@ -23,7 +23,7 @@ const VideoPlayer = ({ videoUrl }: Props) => {
     <iframe
       src={videoUrl}
       title="Video Player"
-      // sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+      sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
       allowFullScreen
       className="w-full h-[80vh]"
     ></iframe>

@@ -21,14 +21,16 @@ const TVShowPlayerScreen = () => {
     // isError,
   } = useGetData<SingleTVShow>(
     ['tvshow', id],
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${
+    `${import.meta.env.VITE_TMDB_API_URL}/3/tv/${id}?api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }`
   )
 
   return (
     <>
-      <VideoPlayer videoUrl={`https://vidsrc.to/embed/tv/${id}`} />
+      <VideoPlayer
+        videoUrl={`${import.meta.env.VITE_VIDEO_SRC}/embed/tv/${id}`}
+      />
 
       {tvshow ? (
         <>
@@ -38,7 +40,9 @@ const TVShowPlayerScreen = () => {
               <Image
                 isBlurred
                 isZoomed
-                src={`https://image.tmdb.org/t/p/original/${tvshow.poster_path}`}
+                src={`${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/original/${
+                  tvshow.poster_path
+                }`}
                 className="w-full"
               />
             </div>
@@ -51,11 +55,15 @@ const TVShowPlayerScreen = () => {
               <br />
               {/* <p>{tvshow.budget}</p> */}
               <br />
-              <p>{tvshow.adult ? 'True': 'False'}</p>
+              <p>{tvshow.adult ? 'True' : 'False'}</p>
             </div>
           </div>
         </>
-      ):(<center><Spinner/></center>)}
+      ) : (
+        <center>
+          <Spinner />
+        </center>
+      )}
     </>
   )
 }

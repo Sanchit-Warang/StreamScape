@@ -39,14 +39,14 @@ const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
     MediaData<Movie | TVShow>
   >(
     ['search results', searchQuery, tyype],
-    `https://api.themoviedb.org/3/search/${tyype}?api_key=${
+    `${import.meta.env.VITE_TMDB_API_URL}/3/search/${tyype}?api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }&query=${searchQuery}`
   )
 
   const handleClickListItem = (id: number): void => {
     setSearchQuery('')
-    navigate(`/${tyype == 'tv' ? 'tvshow': tyype}/${id}`)
+    navigate(`/${tyype == 'tv' ? 'tvshow' : tyype}/${id}`)
   }
 
   return (
@@ -73,13 +73,13 @@ const SearchModal = ({ isOpen, onOpenChange, mode }: Props) => {
                 <Radio value="tv">TV shows</Radio>
               </RadioGroup>
               <Input
-                  type="text"
-                  label="Search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  color={tyype == 'tv' ? 'primary' : 'secondary'}
-                  startContent={<SearchIcon />}
-                />
+                type="text"
+                label="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                color={tyype == 'tv' ? 'primary' : 'secondary'}
+                startContent={<SearchIcon />}
+              />
             </ModalHeader>
             <ModalBody>
               {isLoading ? (

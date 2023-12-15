@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     port: 3000,
     // proxy: {
-    //   '/vapi': 'https://vidsrc.to' 
+    //   '/vapi': `${import.meta.env.VITE_VIDEO_SRC}`
     // },
-  }
+  },
 })

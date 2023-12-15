@@ -21,26 +21,28 @@ const MoviePlayerScreen = () => {
     // isError,
   } = useGetData<SingleMovie>(
     ['movie', id],
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${
+    `${import.meta.env.VITE_TMDB_API_URL}/3/movie/${id}?api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }`
   )
-  
+
   return (
     <>
-      <VideoPlayer videoUrl={`https://vidsrc.to/embed/movie/${id}`} />
+      <VideoPlayer
+        videoUrl={`${import.meta.env.VITE_VIDEO_SRC}/embed/movie/${id}`}
+      />
 
       {movie ? (
         <>
           {/* <BackDrop image={movie?.backdrop_path} /> */}
-          <div
-            className="grid md:grid-cols-4 xs:grid-cols-4 gap-12 mt-[20vh] mx-7"
-          >
+          <div className="grid md:grid-cols-4 xs:grid-cols-4 gap-12 mt-[20vh] mx-7">
             <div className="col-span-1">
               <Image
                 isBlurred
                 isZoomed
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                src={`${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/original/${
+                  movie.poster_path
+                }`}
                 className="w-full"
               />
             </div>

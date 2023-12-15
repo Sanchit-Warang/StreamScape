@@ -1,5 +1,5 @@
 //custom components
-import TVShowCard from './TVShowCard'
+import MovieOrTVShowCard from './MovieOrTVShowCard'
 
 //custom hooks
 import useGetData from '../hooks/useGetData'
@@ -12,30 +12,28 @@ import { Pagination } from '@nextui-org/react'
 //library
 import { useState } from 'react'
 //types
-import type { TVShow, MediaData } from '../types/types'
+import type { Movie, TVShow, MediaData } from '../types/types'
 
-const PopularTVShows = () => {
+type Props = {
+  theme: 'movies' | 'tvshows'
+}
+
+const PopularMoviesOrTVShows = ({ theme }: Props) => {
   const [page, setPage] = useState<number>(1)
 
-  const {
-    data: tvshowData,
-    isLoading,
-    isError,
-  } = useGetData<MediaData<TVShow>>(
-    ['popularTVShows', page],
-    `https://api.themoviedb.org/3/tv/popular?page=${page}&api_key=${
+  const { data, isLoading, isError } = useGetData<MediaData<Movie|TVShow>>(
+    ['popular', theme, page],
+    `${import.meta.env.VITE_TMDB_API_URL}/3/${theme === 'movies'? 'movie': 'tv'}/popular?page=${page}&api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }`
   )
 
-  const {
-    data: totalPages,
-  } = useGetTotalPages<number>(
-    ['popularTVShows','totalPages'],
-    `https://api.themoviedb.org/3/tv/popular?api_key=${
+  const { data: totalPages } = useGetTotalPages<number>(
+    ['popular', theme ,'totalPages'],
+    `${import.meta.env.VITE_TMDB_API_URL}/3/${theme === 'movies'? 'movie': 'tv'}/popular?api_key=${
       import.meta.env.VITE_TMDB_API_KEY
     }`
-  ) 
+  )
 
   const handlepageChange = (page: number): void => {
     setPage(page)
@@ -55,9 +53,9 @@ const PopularTVShows = () => {
       ) : isError ? (
         'Error fetching data'
       ) : (
-        <div className="grid mx-10 gap-6 md:grid-cols-7 xs:grid-cols-4">
-          {tvshowData?.results.map((tvshow: TVShow) => (
-            <TVShowCard key={tvshow.id} tvshow={tvshow} />
+        <div className="grid mx-10 gap-6  sm:grid-cols-2 md:grid-cols-7">
+          {data?.results.map((entry: Movie | TVShow) => (
+            <MovieOrTVShowCard key={entry.id} data={entry} />
           ))}
         </div>
       )}
@@ -81,4 +79,4 @@ const PopularTVShows = () => {
   )
 }
 
-export default PopularTVShows
+export default PopularMoviesOrTVShows

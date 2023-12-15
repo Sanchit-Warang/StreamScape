@@ -6,19 +6,24 @@ type Props = {
 
 const SeachListItem = ({ entry }: Props) => {
   return (
-    <div className="flex gap-2 items-center overflow-visible">
+    <div className="flex gap-2 items-center">
       {/* <Badge content={movie.vote_average} color='primary'> */}
       <Avatar
-        className="basis-1/7 h-[8vh] width-[8vh]"
+        className="h-[8vh] w-[10%]"
         radius="sm"
-        src={`https://image.tmdb.org/t/p/w200/${entry.poster_path}`}
+        src={`${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w200/${
+          entry.poster_path
+        }`}
       />
       {/* </Badge> */}
-      <div className="flex gap-2 items-center basis-6/7 whitespace-wrap">
+      <div className="flex gap-2 items-center w-[85%] whitespace-wrap">
         <p className="truncate">
           {'title' in entry ? entry.title : entry.name}
         </p>
-        <Chip color="secondary" variant="shadow">
+        <Chip
+          color={'name' in entry ? 'primary' : 'secondary'}
+          variant="shadow"
+        >
           {'release_date' in entry
             ? entry.release_date.substring(0, 4)
             : entry.first_air_date.substring(0, 4)}
