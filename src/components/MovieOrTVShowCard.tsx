@@ -12,7 +12,7 @@ export default function MovieOrTVShowCard({ data }: Props) {
       <Card
         shadow="md"
         fullWidth={true}
-        className="h-[300px] w-[100%] hover:bg-primary overflow-visible"
+        className="h-[20rem] w-[100%]  hover:bg-primary overflow-visible"
       >
         <Badge
           content={data.vote_average.toFixed(1)}
@@ -27,7 +27,7 @@ export default function MovieOrTVShowCard({ data }: Props) {
               shadow="sm"
               radius="lg"
               width="100%"
-              className="w-full object-cover h-[250px]"
+              className="object-cover h-[17rem]"
               src={`${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w500/${
                 data.poster_path
               }`}

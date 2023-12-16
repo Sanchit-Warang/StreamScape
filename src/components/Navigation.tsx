@@ -35,7 +35,7 @@ const Navigation = ({ mode, toggleTheme }: Props) => {
   return (
     <>
       <Navbar shouldHideOnScroll>
-        <NavLink to="/">
+        <NavLink to="/home">
           <NavbarBrand>
             <AcmeLogo />
             <p className="font-bold text-inherit">StreamScape</p>

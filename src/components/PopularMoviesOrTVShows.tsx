@@ -53,7 +53,7 @@ const PopularMoviesOrTVShows = ({ theme }: Props) => {
       ) : isError ? (
         'Error fetching data'
       ) : (
-        <div className="grid mx-10 gap-6  sm:grid-cols-2 md:grid-cols-7">
+        <div className="grid mx-10 gap-6  sm:grid-cols-2 md:grid-cols-6">
           {data?.results.map((entry: Movie | TVShow) => (
             <MovieOrTVShowCard key={entry.id} data={entry} />
           ))}

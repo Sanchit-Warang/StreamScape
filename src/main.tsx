@@ -12,23 +12,23 @@ import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-
 //screens
 import HomeScreen from './screens/HomeScreen'
 import MoviePlayerScreen from './screens/MoviePlayerScreen'
 import TVShowPlayerScreen from './screens/TVShowPlayerScreen.tsx'
+import HeroScreen from './screens/HeroScreen.tsx'
 
 import { Analytics } from '@vercel/analytics/react'
-
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route index={true} path="/" element={<HeroScreen />} />
       <Route path="/movie/:id" element={<MoviePlayerScreen />} />
       <Route path="/tvshow/:id" element={<TVShowPlayerScreen />} />
+      <Route path="/home" element={<HomeScreen />} />
     </Route>
   )
 )
@@ -41,6 +41,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <ReactQueryDevtools initialIsOpen={false} />
       </NextUIProvider>
     </QueryClientProvider>
-    <Analytics/>
+    <Analytics />
   </React.StrictMode>
 )

@@ -1,4 +1,4 @@
-import PopularMoviesOrTVShows from '../components/PopularMoviesOrTvShows'
+import PopularMoviesOrTVShows from '../components/PopularMoviesOrTVShows'
 import { Divider } from "@nextui-org/react"
 const HomeScreen = () => {
   return (
