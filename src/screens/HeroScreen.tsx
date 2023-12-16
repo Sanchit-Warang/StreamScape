@@ -59,7 +59,7 @@ const shuffle = (array: (typeof squareData)[0][]) => {
   return array
 }
 
-const squareData = [
+let squareData = [
   {
     id: 1,
     src: 'https://davidkoepp.com/wp-content/themes/blankslate/images/Movie%20Placeholder.jpg',
@@ -160,24 +160,24 @@ const ShuffleGrid = () => {
   )
 
   if (movies && tvshows && !lmovie && !ltv) {
-    // squareData = [
-    //   ...movies.results
-    //     .map((movie) => ({
-    //       id: movie.id,
-    //       src: `${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w400/${
-    //         movie.poster_path
-    //       }`,
-    //     }))
-    //     .slice(0, 8),
-    //   ...tvshows.results
-    //     .map((tvshow) => ({
-    //       id: tvshow.id,
-    //       src: `${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w400/${
-    //         tvshow.poster_path
-    //       }`,
-    //     }))
-    //     .slice(0, 8),
-    // ]
+    squareData = [
+      ...movies.results
+        .map((movie) => ({
+          id: movie.id,
+          src: `${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w400/${
+            movie.poster_path
+          }`,
+        }))
+        .slice(0, 8),
+      ...tvshows.results
+        .map((tvshow) => ({
+          id: tvshow.id,
+          src: `${import.meta.env.VITE_TMDB_API_IMAGE_URL}/t/p/w400/${
+            tvshow.poster_path
+          }`,
+        }))
+        .slice(0, 8),
+    ]
   }
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
